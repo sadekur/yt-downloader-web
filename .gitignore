@@ -1,0 +1,14 @@
+# Python virtual environment
+.venv/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Flask
+instance/
+*.log
+
+# OS/editor cruft
+.DS_Store
+*.swp
