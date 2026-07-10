@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>YouTube Downloader</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 480px; margin: 60px auto; padding: 0 20px; }
+    h1 { font-size: 1.4rem; }
+    input[type=text], select { width: 100%; padding: 8px; margin: 6px 0 16px; box-sizing: border-box; }
+    button { padding: 10px 20px; cursor: pointer; }
+    .flash { background: #fee; border: 1px solid #f99; padding: 10px; margin-bottom: 16px; }
+  </style>
+</head>
+<body>
+  <h1>YouTube Video Downloader</h1>
+
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      {% for message in messages %}
+        <div class="flash">{{ message }}</div>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+
+  <form action="{{ url_for('download') }}" method="post">
+    <label for="url">YouTube URL</label>
+    <input type="text" id="url" name="url" placeholder="https://www.youtube.com/watch?v=..." required>
+
+    <label for="quality">Quality</label>
+    <select id="quality" name="quality">
+      {% for q in qualities %}
+        <option value="{{ q }}" {% if q == '720p' %}selected{% endif %}>{{ q }}</option>
+      {% endfor %}
+    </select>
+
+    <button type="submit">Download</button>
+  </form>
+</body>
+</html>
